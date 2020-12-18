@@ -17,14 +17,13 @@ import com.google.firebase.ktx.Firebase
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 
-class LihatLogActivity : AppCompatActivity() {
+class LihatLogGuruActivity : AppCompatActivity() {
     private lateinit var rvPesanan: RecyclerView
-    private lateinit var adapter: PemesananAdapter
+    private lateinit var adapter: PemesananGuruAdapter
     private lateinit var firebaseFirestore: FirebaseFirestore
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
     private val collectionReference = db.collection("pemesanan")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,27 +34,25 @@ class LihatLogActivity : AppCompatActivity() {
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val namaPemesan: String = mAuth.currentUser?.displayName.toString()
+        val nama: String = mAuth.currentUser?.displayName.toString()
         firebaseFirestore = FirebaseFirestore.getInstance()
         rvPesanan = findViewById(R.id.rv_log_pesanan)
         val query = collectionReference
-            .whereEqualTo("nama_pemesan", namaPemesan)
+            .whereEqualTo("nama", nama)
             .orderBy("priority", Query.Direction.ASCENDING)
-            .orderBy("tanggal", Query.Direction.DESCENDING)
-
+            .orderBy("tanggal", Query.Direction.ASCENDING)
 
 
         val options = FirestoreRecyclerOptions.Builder<PemesananModel>()
-            .setQuery(query, PemesananModel::class.java)
+            .setQuery(query,PemesananModel::class.java)
             .build()
-        adapter = PemesananAdapter(options, this)
+        adapter = PemesananGuruAdapter(options,this)
         rvPesanan.layoutManager =
-            LinearLayoutManager(this@LihatLogActivity)
+            LinearLayoutManager(this@LihatLogGuruActivity)
         rvPesanan.setHasFixedSize(true)
         rvPesanan.adapter = adapter
         rvPesanan.adapter!!.notifyDataSetChanged()
     }
-
     override fun onStart() {
         super.onStart()
         adapter!!.startListening()
@@ -66,24 +63,24 @@ class LihatLogActivity : AppCompatActivity() {
         adapter!!.stopListening()
     }
 
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    //bug buka profile
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.nav_log -> {
-                    return@OnNavigationItemSelectedListener true
-                }
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.nav_home -> {
+                //bug buka profile
+                    startActivity(Intent(this, MainActivityGuru::class.java))
             }
-            false
+            R.id.nav_profile -> {
+                startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.nav_log -> {
+//                startActivity(Intent(applicationContext, LihatLogGuruActivity::class.java))
+                return@OnNavigationItemSelectedListener true
+            }
         }
+        false
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

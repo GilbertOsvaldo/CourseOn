@@ -11,12 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Chatroom"></activity>
         <activity android:name=".LihatLogActivity" />
+        <activity android:name=".LihatLogGuruActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MatpelActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".TambahJadwal"></activity>
-        <activity android:name=".MainActivityGuru"></activity>
+        <activity android:name=".TambahJadwal" />
+        <activity android:name=".MainActivityGuru" />
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>

@@ -33,6 +33,7 @@ class ItemAdapter(val itemList: ArrayList<MatpelModel>) :
                         Toast.LENGTH_SHORT
                     ).show()
                     val moveDetail = Intent(itemView.context, MatpelActivity::class.java)
+                    moveDetail.putExtra("EXTRA_MATPEL", matpel.name);
                     context.startActivity(moveDetail)
                 }
             }

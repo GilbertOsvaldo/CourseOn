@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:layout_above="@id/bn_menu"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bn_menu"

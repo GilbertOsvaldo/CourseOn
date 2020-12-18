@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_reminder_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Apakah Anda Yakin?" />
+
+    <TextView
+        android:id="@+id/tv_nama_guru_pesanan_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:text="Nama Guru" />
+
+    <TextView
+        android:id="@+id/tv_tanggal_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Konfirmasi Tambah Jadwal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_matpel_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Konfirmasi Tambah Jadwal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_waktu_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Konfirmasi Tambah Jadwal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_jenis_pemesanan_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Online"
+        android:textSize="20sp" />
+</LinearLayout>

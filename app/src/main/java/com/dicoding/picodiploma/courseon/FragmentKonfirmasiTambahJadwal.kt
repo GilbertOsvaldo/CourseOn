@@ -20,9 +20,7 @@ class FragmentKonfirmasiTambahJadwal : DialogFragment() {
         val rootView : View = inflater.inflate(R.layout.fragment_konfirmasi_tambah_jadwal,container,false)
         rootView.tv_tanggal.setText("Tanggal : $get_teks")
         rootView.tv_waktu.setText("Waktu : $get_teks2")
-        rootView.CancelButton.setOnClickListener {
-            dismiss()
-        }
+
         return rootView
     }
 }

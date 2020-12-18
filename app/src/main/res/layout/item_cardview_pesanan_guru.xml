@@ -18,8 +18,8 @@
             android:id="@+id/tv_nama_guru_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="18dp"
             android:text="Nama Guru"
             android:textColor="#000000"
             android:textSize="18sp" />
@@ -58,7 +58,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_tipe_log"
+            android:id="@+id/tv_tipe_guru_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_waktu_log"
@@ -73,10 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
             android:text="Status"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginRight="16dp"/>
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/ib_cancel_log"
@@ -85,8 +85,30 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="60dp"
+            android:background="#FFFFFF"
             app:srcCompat="@drawable/ic_baseline_cancel_24" />
+
+        <ImageView
+            android:id="@+id/ib_konfirmasi_log"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+
+        <Button
+            android:id="@+id/ib_selesai_log"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Selesai" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.courseon
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvMatpel: RecyclerView
@@ -39,22 +43,25 @@ class MainActivity : AppCompatActivity() {
         adapter = ItemAdapter(arrayList)
         rvMatpel.adapter = adapter
     }
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.nav_home -> {
-                return@OnNavigationItemSelectedListener true
+
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_log -> {
+                    startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
+                }
             }
-            R.id.nav_profile -> {
-                startActivity(Intent(applicationContext, ProfileActivity::class.java))
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.nav_log -> {
-                startActivity(Intent(applicationContext, LihatLogActivity::class.java))
-                return@OnNavigationItemSelectedListener true
-            }
+            false
         }
-        false
-    }
 
     private fun prepare() {
         dataName = resources.getStringArray(R.array.nama_matpel)
@@ -71,6 +78,31 @@ class MainActivity : AppCompatActivity() {
         }
         adapter.matpel = arrayList
     }
+
+    fun getRole(context: Context): String {
+        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        var role = ""
+        val docRef = Firebase.firestore.collection("users").document(mAuth.uid.toString())
+        docRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var document: DocumentSnapshot? = task?.result
+                if (document!!.exists()) {
+                    if (mAuth.currentUser != null) {
+                        if (document?.getString("role").toString() == "Guru") {
+                            role = "Guru"
+                            finish()
+                        }
+                        if (document?.getString("role").toString() == "Murid") {
+                            role = "Murid"
+                            finish()
+                        }
+                    }
+                }
+            }
+        }
+        return role
+    }
+
 }
 
 
